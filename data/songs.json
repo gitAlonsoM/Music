@@ -1,0 +1,9 @@
+[
+    {
+        "id": "bach_prelude_c_major",
+        "title": "Prelude in C Major",
+        "artist": "J.S. Bach",
+        "category": "measures",
+        "filePath": "data/bach_prelude_c_major.json"
+    }
+]

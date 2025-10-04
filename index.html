@@ -1,0 +1,52 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Canción</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="bg-gray-900 text-white flex flex-col items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-lg bg-gray-800 rounded-2xl shadow-2xl p-6">
+        <h1 class="text-3xl font-bold text-center mb-6">Music Visualizer</h1>
+        <p class="text-center text-gray-400 mb-8">Selecciona una canción para comenzar.</p>
+
+        <ul id="song-list" class="space-y-4">
+            </ul>
+    </div>
+
+    <script type="module">
+        import { getAllSongs } from './assets/js/services/dataService.js';
+        console.log('DEBUG: Initializing index.html script.');
+
+        const songListElement = document.getElementById('song-list');
+
+        async function loadSongs() {
+            console.log('DEBUG: Attempting to load songs from dataService.');
+            const songs = await getAllSongs();
+            if (songs && songs.length > 0) {
+                console.log(`DEBUG: Found ${songs.length} songs.`);
+                songListElement.innerHTML = ''; // Clear loading state
+                songs.forEach(song => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                        <a href="visualizer.html?songId=${song.id}" class="block bg-gray-700 hover:bg-blue-600 transition-colors rounded-lg p-4 text-center font-semibold">
+                            ${song.title} - <span class="font-normal text-gray-300">${song.artist}</span>
+                        </a>
+                    `;
+                    songListElement.appendChild(li);
+                });
+            } else {
+                console.log('DEBUG: No songs found or failed to load.');
+                songListElement.innerHTML = '<p class="text-center text-red-400">No se pudieron cargar las canciones.</p>';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadSongs);
+    </script>
+</body>
+</html>
