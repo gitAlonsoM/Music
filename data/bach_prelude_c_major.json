@@ -37,6 +37,7 @@
         ["Sol", "Re", "Sol", "Do", "Fa"],
         ["Sol", "Re", "Sol", "Si", "Fa"],
         ["Do", "Do", "Sol", "Si♭", "Mi"],
-        ["Do", "Do"]
+        ["Do - Do", "fa la do fa do la do la fa la fa re"],
+        ["DO8", ">MI", "SOL", "DO"]
     ]
 }
