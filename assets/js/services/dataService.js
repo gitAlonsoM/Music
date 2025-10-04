@@ -6,9 +6,9 @@
  * @returns {Promise<Array|null>} A promise that resolves to an array of song objects or null on error.
  */
 export async function getAllSongs() {
-    console.log("DEBUG: dataService.getAllSongs() - Fetching song list from /data/songs.json");
+    console.log("DEBUG: dataService.getAllSongs() - Fetching song list from data/songs.json");
     try {
-        const response = await fetch('/data/songs.json');
+        const response = await fetch('data/songs.json'); // Removed leading slash
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -29,7 +29,7 @@ export async function getAllSongs() {
 export async function getSongById(songId) {
     console.log(`DEBUG: dataService.getSongById() - Fetching song data for ID: ${songId}`);
     try {
-        const response = await fetch(`/data/${songId}.json`);
+        const response = await fetch(`data/${songId}.json`); // Removed leading slash
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
